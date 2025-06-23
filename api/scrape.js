@@ -1,28 +1,25 @@
-import cheerio from 'cheerio';
 import axios from 'axios';
+import cheerio from 'cheerio';
 
 export default async function handler(req, res) {
-  const { url } = req.query;
-
-  if (!url) {
-    return res.status(400).json({ error: 'Missing ?url=' });
-  }
-
   try {
-    const response = await axios.get(url);
-    const html = response.data;
-    const $ = cheerio.load(html);
+    const testHtml = `<div id="al-main">
+      <a href="/test1">Test Link 1</a>
+      <a href="/test2">Test Link 2</a>
+    </div>`;
+
+    const $ = cheerio.load(testHtml);
 
     const links = [];
     $('#al-main a').each((i, el) => {
       links.push({
         text: $(el).text().trim(),
-        href: $(el).attr('href')
+        href: $(el).attr('href'),
       });
     });
 
-    res.status(200).json({ count: links.length, links });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(200).json({ message: "✅ Success", links });
+  } catch (err) {
+    res.status(500).json({ message: "❌ Server error", error: err.message });
   }
 }
