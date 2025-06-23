@@ -1,6 +1,7 @@
 {
-  "name": "API",
+  "name": "cheerio-scraper-api",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "repository": "https://github.com/Ayban-17/cheerio-scraper-api.git",
   "author": "Ayban-wbct <mark@webact.com>",
