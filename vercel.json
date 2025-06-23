@@ -1,8 +1,1 @@
-{
-    "functions": {
-      "api/*.mjs": {
-        "runtime": "edge"
-      }
-    }
-  }
-  
+{}
